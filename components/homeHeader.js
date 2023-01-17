@@ -6,7 +6,7 @@ import { heebo, montserrat } from "utils/fonts";
 const HomeHeader = () => {
   return (
     <div>
-      <div className="w-3/5 mx-auto grid grid-cols-2 mt-48 items-center">
+      <div className="grid grid-cols-2 mt-36 items-center">
         <div className={`${montserrat.className} text-5xl`}>
           <p className="font-bold tracking-wider">Grid Game</p>
           <p className="text-5xl">Creator ⚒️</p>

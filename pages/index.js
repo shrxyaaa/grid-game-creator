@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import HomeHeader from 'components/homeHeader'
+import HomeHeader from 'components/HomeHeader'
+import InputPairs from 'components/InputPairs'
 
 export default function Home() {
   return (
@@ -11,12 +12,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main >
-        <div >
+        <div className='w-3/5 mx-auto'>
           
           {/* Header component */}
           <HomeHeader />
 
           {/* 8 pairs of input fields in 2 columns */}
+          <InputPairs />
 
           {/* Create Memory Grid */}
 
