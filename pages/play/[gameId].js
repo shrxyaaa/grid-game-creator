@@ -1,25 +1,16 @@
 import GameArea from "components/GameArea";
 import AppContext from "components/AppContext";
-import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { montserrat, heebo } from "utils/fonts";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../Firebase";
+import { useRouter } from "next/router";
 
 function GameplayPage() {
   const router = useRouter();
   const context = useContext(AppContext);
-  const gameId = router.query.gameId;
+  const [cardsData, setCardsData] = useState([]);
   const [timer, setTimer] = useState(0);
-
-  const cardsData = [
-    ["1+1", "2"],
-    ["2+2", "4"],
-    ["3+3", "6"],
-    ["4+4", "8"],
-    ["5+5", "10"],
-    ["6+6", "12"],
-    ["7+7", "14"],
-    ["8+8", "16"],
-  ];
 
   const getTime = () => {
     return `${Math.trunc(timer / 60)}:${timer % 60 < 10 ? "0" : ""}${
@@ -29,10 +20,33 @@ function GameplayPage() {
 
   useEffect(() => {
     console.log(context.gameCompleted);
+
     setTimeout(() => {
       if (!context.gameCompleted) setTimer(timer + 1);
     }, 1000);
   }, [timer]);
+
+  useEffect(() => {
+    getDoc(doc(db, `GRIDS/${router.query.gameId}`))
+      .then((doc) => {
+        const cardsDataList = [];
+        const data = doc.data()
+        console.log(data);
+        for (const key in data) {
+          let item = [];
+          item.push(key);
+          item.push(data[key])
+          console.log(item);
+          cardsDataList.push(item);
+        }
+
+        console.log(cardsDataList);
+        setCardsData(cardsDataList);
+      })
+      .catch((error) => {
+        console.log(`Error while fetching: ${error}`);
+      });
+  }, [router.query.gameId]);
 
   return (
     <div className="grid grid-cols-[1fr_2fr_1fr] w-11/12 mx-auto my-4">

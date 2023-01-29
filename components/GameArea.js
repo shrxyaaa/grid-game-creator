@@ -99,6 +99,7 @@ function GameArea({ cardsData }) {
   };
 
   useEffect(() => {
+    console.log(cardsData);
     createCardList();
   }, []);
 

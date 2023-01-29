@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "build": "next build && next export",
+    "public": "out",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

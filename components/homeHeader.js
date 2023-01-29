@@ -12,7 +12,7 @@ const HomeHeader = () => {
           <p className="text-5xl">Creator ⚒️</p>
           <p className="text-2xl mt-8">Create a <span className="text-[#6C63FF]">Memory Game</span> for students 🧑‍🎓</p>
         </div>
-        <Image className="select-none" draggable={false} src={headerGraphic}></Image>
+        <Image alt="education-graphic" className="select-none" draggable={false} src={headerGraphic}></Image>
       </div>
 
     </div>
